@@ -1,5 +1,7 @@
 using System;
+using System.Text.Json;
 using GameAPI;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 
 namespace GameAPI
@@ -22,6 +24,17 @@ namespace GameAPI
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            //lägger till cors så att anslutningar blir tillåtna oavsett. 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", builder =>
+                {
+                    builder.AllowAnyOrigin()  
+                        .AllowAnyHeader()  
+                        .AllowAnyMethod(); 
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -30,17 +43,27 @@ namespace GameAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
-
-
-            //Spelplanen skapas.
-            char[] plane = new char[9] { 'X', '-', 'O', 'X', '-', '-', '-', '-', '-' };
-
-            app.MapGet("/AI_Move", () =>
+       
+            // API för att beräkna vilket steg som AI ska ta. 
+            app.MapPost("/AI_Move", async (HttpRequest request) =>
             {
-                var (bestMove, score) = ai.CalcMove(plane, true, 0);
-                return "tjena" + bestMove +"score"+score;
+                try
+                {
+                    //skapar ett objekt med spelplanen. validerar i skapandet. 
+                    var game_IN = await request.ReadFromJsonAsync<Game>(); 
+
+                    //beräknar drag. data in är ok och reda att användas
+                    var (bestMove, score) = ai.CalcMove(game_IN.Plane, true, 0);
+                    return Results.Json(new { BestMove = bestMove, Score = score });
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("det gick fel med indatan"+ ex.Message);
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("GetAI_Move")
             .WithOpenApi();

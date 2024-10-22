@@ -7,29 +7,31 @@ namespace GameAPI
 {
     public class AI_Unbeatable
     {
-        private Game checkwinners = new Game();
+        
 
-         public (int bestMove, int score) CalcMove( char [] plane, bool AI_turn, int level)
+         public (int bestMove, int score) CalcMove( string [] plane, bool AI_turn, int level)
         {
+            //Skapar ett objekt med min spelplan
+            Game checkwinners = new Game(plane);
+
             //kontroll om någon har vunnit. 
-            char winner = checkwinners.CheckGame(plane);
-            if (winner == 'X') 
+            string winner = checkwinners.CheckGame();
+            // har nån vunnit så retuneras det samt tar bort nivån för att kunna priotera tex en vinst eller blockering, -1 indikerar att inget drag är möjligt. dvs att spelet är slut. 
+            if (winner == "X") 
             {
                 return (-1, -(plane.Length+1) + level);; 
             }
-            else if (winner == 'O') 
+            else if (winner == "O") 
             {
                 return (-1, (plane.Length+1) - level); 
                 
             }
             //oavgjort
-            else if (winner == 'D')
+            else if (winner == "D")
             {
                 return (-1, 0);
             }
 
-
-               
              //ingen har vunnit. går vidare för att kontrollera nästa möjliga drag
            
             //Score som används för att beräkna vilken väg i trädet som är bäst. intiterar beroende om det är spelare eller AI som ska köra. 
@@ -40,21 +42,21 @@ namespace GameAPI
             {
 
                 //kontrollerar om det är tomt. isåfall skapas scenarion baserat på denna plats. 
-                if(plane[i] == '-')
+                if(plane[i] == "-")
                 {
                     if (AI_turn)
                     {
-                        plane[i] = 'O';    
+                        plane[i] = "O";    
                     }
                     else
                     {
-                        plane[i] = 'X';
+                        plane[i] = "X";
                     }
                  
                     // skickar in ny spelplan i Calcmove för att kunna basera en ny nivå på hur spelplanen nu ser
                      var (tempMove, tempScore) = CalcMove(plane,!AI_turn, level+1);
                     //plockar bort mitt insatta värde 
-                    plane[i] = '-';
+                    plane[i] = "-";
                     //Sparar den med bäst poäng. kontrollerar både om det finns möjlighet för vinst eller om AI ska blocka spelare. 
                     if(AI_turn)
                     {

@@ -7,8 +7,36 @@ namespace GameAPI
 {
     public class Game
     {
+        public string[] Plane { get; set; }
+    
         
-        public char CheckGame(char [] plane)
+        public Game() {}
+
+        //skapar mitt spel. 
+        public Game(string[] plane)
+        {
+            ValidatePlane(plane); 
+            //sparar det även i en string array ifall jag hinner ändra. 
+            this.Plane = plane;
+        }
+
+            private void ValidatePlane(string[] plane)
+                {
+                    if (plane == null || plane.Length != 9)
+                    {
+                        throw new ArgumentException("Dålig indata. Kontrollera spelplanen som skickades.");
+                    }
+
+                    foreach (string c in plane)
+                    {
+                        if (c != "X" && c != "O" && c != "-")
+                        {
+                            throw new ArgumentException("Spelplanen får endast innehålla X, O eller -.");
+                        }
+                    }
+                }
+                
+        public string CheckGame()
         {
             //möjliga vinstscenarion i list 
           List<int[]> PossibleWinnings = new List<int[]>
@@ -26,23 +54,23 @@ namespace GameAPI
             // kontrollerar om något scenario finns i spelplanen
             foreach (var numbers in PossibleWinnings)
             {
-                if(plane[numbers[0]] == 'X' &&plane[numbers[1]]=='X' && plane[numbers[2]]=='X')
+                if(this.Plane[numbers[0]] == "X" && this.Plane[numbers[1]]=="X" && this.Plane[numbers[2]]=="X")
                 {
-                    return 'X';
+                    return "X";
                 }
-                else if(plane[numbers[0]] == 'O' &&plane[numbers[1]]=='O' && plane[numbers[2]]=='O')
+                else if(this.Plane[numbers[0]] == "O" && this.Plane[numbers[1]]=="O" && this.Plane[numbers[2]]=="O")
                 {
-                    return 'O';
+                    return "O";
                 }
             }
 
             //kontroll om det är oavgjort. 
-             if (!plane.Contains('-'))
+             if (!this.Plane.Contains("-"))
              {
-                return 'D';
+                return "D";
              }
 
-            return '-';
+            return "-";
         
         }
     }

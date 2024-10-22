@@ -31,3 +31,4 @@ D:\studier\DT071G\projektv4\backend\GameAPI\obj\Debug\net8.0\refint\GameAPI.dll
 D:\studier\DT071G\projektv4\backend\GameAPI\obj\Debug\net8.0\GameAPI.pdb
 D:\studier\DT071G\projektv4\backend\GameAPI\obj\Debug\net8.0\GameAPI.genruntimeconfig.cache
 D:\studier\DT071G\projektv4\backend\GameAPI\obj\Debug\net8.0\ref\GameAPI.dll
+D:\studier\DT071G\projektv4\backend\GameAPI\obj\Debug\net8.0\GameAPI.sourcelink.json
