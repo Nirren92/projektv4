@@ -49,9 +49,7 @@ namespace GameAPI
                     Console.WriteLine("det gick fel med indatan"+ ex.Message);
                     return Results.BadRequest(ex.Message);
                 }
-            })
-            .WithName("GetAI_Move")
-            .WithOpenApi();
+            });
             app.Run();
 
         }
