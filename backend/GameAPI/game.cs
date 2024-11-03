@@ -8,7 +8,7 @@ namespace GameAPI
 {
     public class Game
     {
-        public string[] Plane =[""];
+        public string[] Plane { get; set; }
         public bool Game_Done = false;
         public string Game_winner="";
         //skapar mitt spel. 
