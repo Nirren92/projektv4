@@ -9,54 +9,51 @@ namespace GameAPI
     {
         
 
-         public (int bestMove, int score) CalcMove( string [] plane, bool AI_turn, int level)
+         public (int bestMove, int score) CalcMove( Game game, bool AI_turn, int level)
         {
-            //Skapar ett objekt med min spelplan
-            Game checkwinners = new Game(plane);
-
             //kontroll om någon har vunnit. 
-            string winner = checkwinners.CheckGame();
-            // har nån vunnit så retuneras det samt tar bort nivån för att kunna priotera tex en vinst eller blockering, -1 indikerar att inget drag är möjligt. dvs att spelet är slut. 
-            if (winner == "X") 
+            if(game.Game_Done)
             {
-                return (-1, -(plane.Length+1) + level);; 
+                // har nån vunnit så retuneras det samt tar bort nivån för att kunna priotera tex en vinst eller blockering, -1 indikerar att inget drag är möjligt. dvs att spelet är slut. 
+                if (game.Game_winner == "X") 
+                {
+                    return (-1, -(game.Plane.Length+1) + level);; 
+                }
+                else if (game.Game_winner == "O") 
+                {
+                    return (-1, (game.Plane.Length+1) - level); 
+                    
+                }
+                //oavgjort
+                else if (game.Game_winner == "D")
+                {
+                    return (-1, 0);
+                }
             }
-            else if (winner == "O") 
-            {
-                return (-1, (plane.Length+1) - level); 
-                
-            }
-            //oavgjort
-            else if (winner == "D")
-            {
-                return (-1, 0);
-            }
-
-             //ingen har vunnit. går vidare för att kontrollera nästa möjliga drag
+             //ingen har vunnit. går vidare för att kontrollera nästa möjliga drag dvs att en till nivå kommer bli kontrollerad. 
            
-            //Score som används för att beräkna vilken väg i trädet som är bäst. intiterar beroende om det är spelare eller AI som ska köra. 
+            //Score som används för att beräkna vilken väg i trädet som är bäst. intiterar beroende om det är spelare eller AI som ska köra. kontrollerar vilkens tur det
+            // beroende på vems tur det är så skrivs ett högt eller lågt tal. detta för att kunna avgöra om det är bästa draget. 
             int score = AI_turn ? int.MinValue : int.MaxValue;
             int bestMove = -1; 
-
-            for (int i = 0; i < plane.Length; i++)
+            //loopar igenom alla tommar rutor och sätter in draget baserat på vems tur det är.
+            for (int i = 0; i < game.Plane.Length; i++)
             {
-
                 //kontrollerar om det är tomt. isåfall skapas scenarion baserat på denna plats. 
-                if(plane[i] == "-")
+                if(game.Plane[i] == "-")
                 {
                     if (AI_turn)
                     {
-                        plane[i] = "O";    
+                        game.Plane[i] = "O";    
                     }
                     else
                     {
-                        plane[i] = "X";
+                        game.Plane[i] = "X";
                     }
-                 
                     // skickar in ny spelplan i Calcmove för att kunna basera en ny nivå på hur spelplanen nu ser
-                     var (tempMove, tempScore) = CalcMove(plane,!AI_turn, level+1);
+                     var (tempMove, tempScore) = CalcMove(new  Game(game.Plane),!AI_turn, level+1);
                     //plockar bort mitt insatta värde 
-                    plane[i] = "-";
+                    game.Plane[i] = "-";
                     //Sparar den med bäst poäng. kontrollerar både om det finns möjlighet för vinst eller om AI ska blocka spelare. 
                     if(AI_turn)
                     {
@@ -76,8 +73,6 @@ namespace GameAPI
                     }
                 }
             }
-
-
             return (bestMove, score);;
         }
 
