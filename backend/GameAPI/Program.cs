@@ -34,10 +34,11 @@ namespace GameAPI
             {
                 try
                 {
+                    
+                    //skapar ett objekt med spelplanen. validerar i skapandet av objektet. 
+                    var game_IN = await request.ReadFromJsonAsync<Game>(); 
                     //skapar mitt AI objekt där jag kontrollerar vilket som är det bästa draget. 
                     AI_Unbeatable ai = new AI_Unbeatable();
-                    //skapar ett objekt med spelplanen. validerar i skapandet. 
-                    var game_IN = await request.ReadFromJsonAsync<Game>(); 
                     //beräknar drag. data in är ok och reda att användas
                     var (bestMove, score) = ai.CalcMove(game_IN, true, 0);
                     //retunerar bästa draget. Retuneras -1 betyder det att det inte finns några tillgänliga drag. 
