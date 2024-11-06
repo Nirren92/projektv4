@@ -1,0 +1,92 @@
+<mxfile host="65bd71144e">
+    <diagram id="gFRq6eSNyxMc7RJvu0Dd" name="Page-1">
+        <mxGraphModel dx="1769" dy="940" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="33" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="26" target="32">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="Start" style="html=1;dashed=0;whitespace=wrap;shape=mxgraph.dfd.start" vertex="1" parent="1">
+                    <mxGeometry x="345" y="80" width="80" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="End" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.terminator;whiteSpace=wrap;" vertex="1" parent="1">
+                    <mxGeometry x="335" y="1290" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="32" target="35">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="Validates incoming data" style="rounded=1;whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="325" y="175" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="35" target="37">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="55" value="NO" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="38">
+                    <mxGeometry x="-0.2481" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="41" value="YES" style="edgeStyle=none;html=1;" edge="1" parent="1" source="35" target="40">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Data Ok?" style="rhombus;whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);rounded=1;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="345" y="305" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="37" target="27">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="220" y="1320"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" value="Write error and send back" style="whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);rounded=1;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="165" y="315" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="43" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="40" target="42">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="Crate class of game plane" style="whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);rounded=1;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="325" y="475" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="45" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="42" target="44">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="42" value="create class of AI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="325" y="615" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="44" target="47">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="44" value="Calculate move in class AI based on object from game plane" style="rounded=1;whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="325" y="755" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="yes" style="edgeStyle=none;html=1;" edge="1" parent="1" source="47" target="49">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="53" value="NO" style="edgeStyle=none;html=1;" edge="1" parent="1" source="47" target="52">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="47" value="Fler scnarion?" style="rhombus;whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);rounded=1;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="345" y="885" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="51" style="edgeStyle=none;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="49" target="44">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="550" y="785"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="49" value="Create a new class ol game plane and recalculate move in ai class" style="whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);rounded=1;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="485" y="895" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="54" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="52" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="52" value="Send move in api" style="whiteSpace=wrap;html=1;fillColor=rgb(24, 20, 29);rounded=1;dashed=0;" vertex="1" parent="1">
+                    <mxGeometry x="325" y="1055" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
